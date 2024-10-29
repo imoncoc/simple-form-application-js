@@ -1,0 +1,127 @@
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+  }
+
+  body {
+      background-color: #344a72;
+      font-family: 'Raleway', sans-serif;
+      color: #ffffff;
+      line-height: 1.8;
+  }
+
+  a {
+      text-decoration: none;
+
+  }
+
+  #container {
+      margin: 30px 60px;
+      padding: 20px;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-wrap {
+      background: #fff;
+      padding: 15px 25px;
+      color: #333;
+  }
+
+  .form-wrap h1,
+  .form-wrap p {
+      text-align: center;
+  }
+
+  .form-wrap .form-group {
+      margin-top: 15px;
+  }
+
+  .form-wrap .form-group label {
+      display: block;
+      color: #666(163, 35, 35);
+  }
+
+  .form-wrap .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: #ddd 1px solid;
+      border-radius: 5px;
+  }
+
+  .form-wrap button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 20px 0px;
+      background: #49c1a2;
+      color: #fff;
+      cursor: pointer;
+  }
+
+  .form-wrap .bottom:hover {
+      background: #37a08e;
+  }
+
+  .form-wrap .bottom-text {
+      font-size: 13px;
+      margin-top: 20px;
+  }
+
+  footer {
+      text-align: center;
+      margin-top: 10px;
+  }
+
+  footer a {
+      color: #49c1a2;
+  }
+
+
+  /* Table */
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      color: #333333;
+
+  }
+
+  th,
+  td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+  }
+
+  th {
+      background-color: #4a6fa1;
+      color: #ffffff;
+  }
+
+  tr:nth-child(even) {
+      background-color: #f2f2f2;
+  }
+
+  tr:hover {
+      background-color: #e0e8f1;
+  }
+
+  .action-btn {
+      padding: 5px 10px;
+      margin: 0 5px;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+  }
+
+  .edit-btn {
+      background-color: #4caf50;
+  }
+
+  .delete-btn {
+      background-color: #f44336;
+  }
