@@ -115,12 +115,11 @@ function deleteUser(userId) {
 }
 
 function editUser(userId) {
-  console.log("Editing user with ID:", userId);
   let userData = JSON.parse(localStorage.getItem("users"));
   console.log({ userData });
   const userToEdit = userData.find((user) => user.id === Number(userId));
 
-  console.log({ userToEdit });
+ 
 
   if (userToEdit) {
     nameInput.value = userToEdit.name;
