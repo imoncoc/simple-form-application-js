@@ -171,5 +171,7 @@
     }
     .form-wrap {
         margin-bottom: 60px;
+        min-width: 480px;
     }
+
 }
