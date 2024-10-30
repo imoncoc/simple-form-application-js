@@ -67,13 +67,19 @@ function renderUserTable(searchType = "", searchValue = "") {
           user.phone.toLowerCase().includes(searchValue.toLowerCase()) ||
           user.address.toLowerCase().includes(searchValue.toLowerCase())
         );
-      } else if (searchType === "Filter") {
-        // Filter: exact, case-sensitive 
+      } else if (searchType === "Filter By Name") {
         return (
-          user.name === searchValue ||
-          user.email === searchValue ||
-          user.phone === searchValue ||
-          user.address === searchValue
+          user.name.toLowerCase().includes(searchValue.toLowerCase()) 
+        );
+      }
+      else if (searchType === "Filter By Email") {
+        return (
+          user.email.toLowerCase().includes(searchValue.toLowerCase()) 
+        );
+      }
+      else if (searchType === "Filter By Phone") {
+        return (
+          user.phone.toLowerCase().includes(searchValue.toLowerCase()) 
         );
       }
       return true;
@@ -114,9 +120,9 @@ function deleteUser(userId) {
   renderUserTable();
 }
 
+
 function editUser(userId) {
   let userData = JSON.parse(localStorage.getItem("users"));
-  console.log({ userData });
   const userToEdit = userData.find((user) => user.id === Number(userId));
 
  
