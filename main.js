@@ -9,6 +9,16 @@ let editingUserId = null;
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  if(nameInput.value.length === 0 || emailInput.value.length === 0 || phoneInput.value.length === 0 || addressInput.value.length === 0  ){
+    alert("Please fill all the Input")
+    return;
+  }
+  let cleanedPhone = phoneInput.value.replace(/[-+]/g, '');
+  if (!cleanedPhone.match(/^\d{1,30}$/)) {
+    alert("Phone Number is invalid");
+    return;
+  }
+
   const newData = {
     name: nameInput.value,
     email: emailInput.value,
@@ -40,12 +50,35 @@ loginForm.addEventListener("submit", (e) => {
   renderUserTable();
 });
 
-function renderUserTable() {
+function renderUserTable(searchType = "", searchValue = "") {
   const userTable = document.getElementById("userTable");
   userTable.innerHTML = "";
 
-  const userData = JSON.parse(localStorage.getItem("users")) || [];
-  console.log("renderUserTable: ", userData);
+  let userData = JSON.parse(localStorage.getItem("users")) || [];
+
+  
+  if (searchType && searchValue) {
+    userData = userData.filter((user) => {
+      if (searchType === "Search") {
+        // Search: case-insensitive 
+        return (
+          user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+          user.email.toLowerCase().includes(searchValue.toLowerCase()) ||
+          user.phone.toLowerCase().includes(searchValue.toLowerCase()) ||
+          user.address.toLowerCase().includes(searchValue.toLowerCase())
+        );
+      } else if (searchType === "Filter") {
+        // Filter: exact, case-sensitive 
+        return (
+          user.name === searchValue ||
+          user.email === searchValue ||
+          user.phone === searchValue ||
+          user.address === searchValue
+        );
+      }
+      return true;
+    });
+  }
 
   userData.forEach((user, index) => {
     const row = document.createElement("tr");
@@ -68,12 +101,15 @@ function renderUserTable() {
   });
 }
 
-renderUserTable();
+
 
 function deleteUser(userId) {
   console.log({ userId });
+  console.log("deleteUser called")
   let userData = JSON.parse(localStorage.getItem("users"));
-  userData = userData.filter((user) => user.id !== userId);
+  console.log({userData})
+  userData = userData.filter((user) => user.id !== Number(userId));
+  console.log({userData})
   localStorage.setItem("users", JSON.stringify(userData));
   renderUserTable();
 }
@@ -96,3 +132,21 @@ function editUser(userId) {
     submitButton.innerHTML = "Update";
   }
 }
+
+
+
+
+
+function handleSearchOrFilter() {
+  
+  const selectElement = document.getElementById("actionSelect");
+  const selectedOption = selectElement.options[selectElement.selectedIndex].text;
+  
+  const inputValue = document.getElementById("search").value;
+  
+  renderUserTable(selectedOption, inputValue);
+}
+
+
+
+renderUserTable();

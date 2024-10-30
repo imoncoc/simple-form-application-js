@@ -10,7 +10,7 @@
     <div id="container">
       <div class="form-wrap">
         <h1>User Form</h1>
-        <p>Become a member—it's fast and free!</p>
+        <p>Add a member—it's fast and free!</p>
         <form id="loginForm">
           <div class="form-group">
             <label for="name"> Name</label>
@@ -22,24 +22,39 @@
           </div>
           <div class="form-group">
             <label for="phone"> Phone</label>
-            <input type="phone" name="phone" id="phone" />
+            <input type="text" name="phone" id="phone" />
           </div>
           <div class="form-group">
             <label for="address"> Address</label>
-            <input type="address" name="address" id="address" />
+            <input type="text" name="address" id="address" />
           </div>
 
           <button type="submit" id="submit-btn" class="btn">Add User</button>
-          <!-- <p class="botton-text">
-            By clicking the Sign up button, you agree to our
-            <a href="#">Terms & Conditions</a> and
-            <a href="#">Privacy Policy</a>
-          </p> -->
+          
         </form>
       </div>
 
-      <div>
-        <table>
+      <div class="">
+        <!-- Search and filter -->
+        <div class="search-container">
+          <div>
+            <div class="custom-select" >
+              <select id="actionSelect">
+                <!-- <option value="0">Select:</option> -->
+                <option value="1">Search</option>
+                <option value="2">Filter</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <input class="search-input" type="text" name="search" id="search" placeholder="Search / Filter" />
+          </div>
+          <div>
+            <button class="search-submit-button" onclick="handleSearchOrFilter()">Submit</button>
+          </div>
+        </div>
+
+        <table class="">
           <thead>
             <tr>
               <th>No</th>
@@ -56,6 +71,9 @@
         </table>
       </div>
     </div>
+
+
+
     <script src="main.js"></script>
   </body>
 </html>
