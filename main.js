@@ -2,6 +2,7 @@ let nameInput = document.getElementById("name");
 let emailInput = document.getElementById("email");
 let phoneInput = document.getElementById("phone");
 let addressInput = document.getElementById("address");
+
 let submitButton = document.getElementById("submit-btn");
 
 let editingUserId = null;
@@ -13,8 +14,8 @@ loginForm.addEventListener("submit", (e) => {
     alert("Please fill all the Input")
     return;
   }
-  let cleanedPhone = phoneInput.value.replace(/[-+]/g, '');
-  if (!cleanedPhone.match(/^\d{1,30}$/)) {
+  let checkPhoneNumber = phoneInput.value.replace(/[-+]/g, '');
+  if (!checkPhoneNumber.match(/^\d{1,30}$/)) {
     alert("Phone Number is invalid");
     return;
   }
@@ -60,7 +61,6 @@ function renderUserTable(searchType = "", searchValue = "") {
   if (searchType && searchValue) {
     userData = userData.filter((user) => {
       if (searchType === "Search") {
-        // Search: case-insensitive 
         return (
           user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
           user.email.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -110,12 +110,9 @@ function renderUserTable(searchType = "", searchValue = "") {
 
 
 function deleteUser(userId) {
-  console.log({ userId });
-  console.log("deleteUser called")
+  
   let userData = JSON.parse(localStorage.getItem("users"));
-  console.log({userData})
   userData = userData.filter((user) => user.id !== Number(userId));
-  console.log({userData})
   localStorage.setItem("users", JSON.stringify(userData));
   renderUserTable();
 }
